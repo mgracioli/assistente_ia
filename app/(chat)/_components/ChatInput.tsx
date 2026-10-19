@@ -1,13 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import {ChatInputProps} from '../_types/chatTypes'
 
-type ChatInputProps = {
-  onSend: (text: string) => void;
-  disabled?: boolean;
-};
-
-export function ChatInput({ onSend, disabled }: ChatInputProps) {
+export function ChatInput({ sendMessage, disabled }: ChatInputProps) {
   const [input, setInput] = useState('');
 
   function handleSubmit(e: React.SubmitEvent) {
@@ -17,7 +13,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
 
     if (!inputText) return;
 
-    onSend(inputText);
+    sendMessage(inputText);
     
     setInput('');
   }

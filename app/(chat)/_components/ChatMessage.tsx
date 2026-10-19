@@ -1,12 +1,6 @@
-'use client';
+import {ChatMessageProps} from '../_types/chatTypes'
 
-import { UIMessage } from '@ai-sdk/react';
-
-type ChatMessage = {
-    messages: UIMessage<unknown>[]
-}
-
-export function ChatMessage({messages}: ChatMessage) {
+export function ChatMessage({messages}: ChatMessageProps) {
       return(
         <div className="flex flex-col">
             {messages.map((message) => (

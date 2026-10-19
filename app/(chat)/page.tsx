@@ -13,7 +13,7 @@ export default function Chat() {
       <ChatMessage messages={messages} />
 
       <ChatInput 
-        onSend={(text) => sendMessage({ text })}
+        sendMessage={(text) => sendMessage({ text })}
         disabled={status === 'streaming'}
       >
       </ChatInput>
