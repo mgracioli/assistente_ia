@@ -1,7 +1,7 @@
 // app/api/chat/route.ts
 
 import { google } from '@ai-sdk/google';
-import { streamText, UIMessage, convertToModelMessages } from 'ai';
+import { streamText, UIMessage, convertToModelMessages, createUIMessageStream, toUIMessageStream, createUIMessageStreamResponse } from 'ai';
 
 export const maxDuration = 30;
 
@@ -14,5 +14,9 @@ export async function POST(req: Request) {
     messages: await convertToModelMessages(messages),
   });
 
-  return result.toUIMessageStreamResponse();
+  return createUIMessageStreamResponse({
+    stream: toUIMessageStream({
+      stream: result.stream
+    })
+  });  
 }
