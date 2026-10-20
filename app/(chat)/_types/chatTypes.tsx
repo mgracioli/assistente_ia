@@ -8,4 +8,3 @@ export type ChatInputProps = {
 export type ChatMessageProps = {
     messages: UIMessage<unknown>[]
 }
-
