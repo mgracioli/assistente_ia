@@ -1,5 +1,5 @@
 {
-  "name": "meu-assistente-ia",
+  "name": "assistente_ia",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^4.0.99",
+    "@ai-sdk/react": "^4.0.147",
+    "ai": "^7.0.143",
     "next": "16.4.2",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",

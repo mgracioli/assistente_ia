@@ -1,3 +1,4 @@
+// pagina principal, envolve toda a aplicação, UI é compartilhada entre as rotas filhas
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

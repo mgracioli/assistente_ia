@@ -1,0 +1,11 @@
+import { UIMessage } from "ai";
+
+export type ChatInputProps = {
+  sendMessage: (text: string) => void;
+  disabled?: boolean;
+};
+
+export type ChatMessageProps = {
+    messages: UIMessage<unknown>[]
+}
+
