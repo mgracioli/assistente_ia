@@ -2,14 +2,14 @@
 
 import 'server-only';
 import { z } from 'zod';
-import { Auth } from '../lib/auth';
-import { db } from '../lib/db';
+import { Auth } from '../_lib/auth';
+import { db } from '../_lib/db';
 import { revalidatePath } from 'next/cache';
-import { SaveChatState } from './saveChatTypes';
+import { SaveChatState } from './saveChatActionTypes';
 
 // schema para validação das mensagens
 const messageSchema = z.object({
-  role: z.enum(['user', 'assistant']), // enum restringe o valor de "role" para apenas aos dois que estão definidos
+  role: z.enum(['user', 'assistant']), // enum restringe o valor de "role" para apenas um dos dois que estão definidos
   content: z.string().min(1).max(10000),
 });
 

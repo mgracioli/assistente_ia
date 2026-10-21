@@ -1,4 +1,5 @@
-// pagina principal, envolve toda a aplicação, UI é compartilhada entre as rotas filhas
+// pagina principal, envolve toda a aplicação, UI é compartilhada entre as rotas filhas, por exemplo, se eu tenho um cabeçalho padrão para
+// o site, ele deve ser colocado aqui, para que seja renderizado em todas as páginas filhas. O mesmo vale para o rodapé, barra lateral, etc.
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -24,7 +25,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">{/*{children}*/}
+        <header className="flex flex-col">
+          Meu sistema - layout global do sistema
+        </header>
+
+        <main className="flex flex-col">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }

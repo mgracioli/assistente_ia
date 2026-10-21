@@ -1,5 +1,5 @@
-import { Auth } from '@/app/lib/auth';
-import { db } from '@/app/lib/db';
+import { Auth } from '@/app/_lib/auth';
+import { db } from '@/app/_lib/db';
 import { redirect } from 'next/navigation';
 
 export default async function HistoricoPage() {
