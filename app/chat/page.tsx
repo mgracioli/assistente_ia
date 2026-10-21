@@ -2,10 +2,11 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import {ChatInput}  from './_components/ChatInput'
-import {ChatMessage} from './_components/ChatMessage'
+import {ChatMessage} from './_components/chatMessage'
+import { ChatInput } from './_components/chatInput';
+import { SaveChatButton } from './_components/saveChatButton';
 
-export default function Chat() {
+export default function ChatPage() {
     const { messages, sendMessage, status } = useChat(); //Hook que faz o POST em api/chat/route.ts
 
   return (
@@ -17,6 +18,8 @@ export default function Chat() {
         disabled={status === 'streaming'}
       >
       </ChatInput>
+
+      <SaveChatButton messages={} />
     </div>
   );
 }

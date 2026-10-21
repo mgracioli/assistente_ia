@@ -10,8 +10,6 @@ export function ChatMessage({messages}: ChatMessageProps) {
                     </span>
 
                     {message.parts.map((part, i) => {
-                        console.log('aquiii: ', part)
-
                         switch(part.type)  {
                             case 'text':
                                 return <span key={`${message.id}-${i}`}>{part.text}</span>;
