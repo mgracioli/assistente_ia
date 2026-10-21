@@ -1,4 +1,4 @@
-// app/page.tsx
+// app/chat/page.tsx
 'use client';
 
 import { useChat } from '@ai-sdk/react';

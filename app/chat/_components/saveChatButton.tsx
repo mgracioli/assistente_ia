@@ -3,7 +3,7 @@
 import { useActionState } from 'react';
 import { saveChatAction } from '@/app/_actions/saveChatAction';
 import { SaveChatState } from '@/app/_actions/saveChatActionTypes';
-import { SaveChatButtonProps } from '../_types/chatTypes';
+import { SaveChatButtonProps } from '../types';
 
 const initialState: SaveChatState = { success: false };
 

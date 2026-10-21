@@ -1,4 +1,4 @@
-import {ChatMessageProps} from '../_types/chatTypes'
+import {ChatMessageProps} from '../types'
 
 export function ChatMessage({messages}: ChatMessageProps) {
     return (

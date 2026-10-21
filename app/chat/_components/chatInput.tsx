@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChatInputProps } from '../_types/chatTypes'
+import { ChatInputProps } from '../types'
 
 export function ChatInput({ sendMessage, disabled }: ChatInputProps) {
   const [input, setInput] = useState('');
