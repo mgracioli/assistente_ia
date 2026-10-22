@@ -9,6 +9,7 @@ export type UsersPage = {
     nextCursor: string | null 
 };
 
-export type fetchUsersProps = {
+export type FetchUsersProps = {
     pageParam: string | null;
+    search: string;
 }
