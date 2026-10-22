@@ -4,8 +4,13 @@ import { db } from '@/app/_lib/db'; // seu cliente Prisma
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url); // obtém os parâmetros da URL (os parâmetros ficam armazenados na propriedade "searchParams" da request.url)
+  
+    console.log('request url', request.url)
+
+  console.log('params', searchParams)
+  
   const cursor = searchParams.get('cursor'); // obtém o id do último usuário carregado, a paginação é baseada em cursor em vez de offset/skip
-  const limit = 20; // quantos usuários por página
+  const limit = 5; // quantos usuários por página
 
   const users = await db.user.findMany({
     take: limit,

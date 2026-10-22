@@ -19,7 +19,7 @@ export default function ChatPage() {
       >
       </ChatInput>
 
-      <SaveChatButton messages={} />
+      {/* <SaveChatButton messages={} /> */}
     </div>
   );
 }

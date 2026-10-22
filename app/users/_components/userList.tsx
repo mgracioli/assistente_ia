@@ -3,11 +3,11 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
-import { fetchUsersProps, UsersPage } from './types';
+import { fetchUsersProps, UsersPage } from '../types';
 
 async function fetchUsers({ pageParam }: fetchUsersProps): Promise<UsersPage> {
   const url = pageParam ? `/api/users?cursor=${pageParam}` : '/api/users';
-  const res = await fetch(url); //trocar por db????
+  const res = await fetch(url); // não trocar por db, db só roda no servidor, o fetch roda no cliente
 
   if (!res.ok) throw new Error('Falha ao buscar usuários');
 
@@ -56,13 +56,14 @@ export function UserList() {
 
   // Achata todas as páginas em um único array de usuários
   const allUsers = data.pages.flatMap((page) => page.users);
+  console.log('users', allUsers)
 
   return (
-    <div>
+    <div className="max-h-[600px] overflow-y-auto border rounded">
       <ul>
         {allUsers.map((user) => (
           <li key={user.id}>
-            {user.name} — {user.email}
+            {user.id} - {user.name} — {user.email}
           </li>
         ))}
       </ul>

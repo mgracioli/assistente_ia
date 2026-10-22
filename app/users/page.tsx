@@ -1,8 +1,8 @@
-import { UserList } from "./userList";
+import { UserList } from "./_components/userList";
 
 export default function userPage() {
   return (
-    <div className='flex flex-col w-full max-w-md py-24 mx-auto stretch'>
+    <div className='flex flex-col w-full max-w-md py-8 mx-auto stretch'>
       <h1 className='text-2xl font-bold mb-4'>Página de Usuários</h1>
 
       <UserList />
