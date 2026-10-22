@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <Providers>
-          <header className="flex flex-col bg-blue-700 w-full py-5 items-center">
+          <header className="bg-blue-700 w-full py-5 text-center">
             Meu sistema - layout global do sistema
           </header>
 

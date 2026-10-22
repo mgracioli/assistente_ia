@@ -18,8 +18,6 @@ export default function ChatPage() {
         disabled={status === 'streaming'}
       >
       </ChatInput>
-
-      {/* <SaveChatButton messages={} /> */}
     </div>
   );
 }

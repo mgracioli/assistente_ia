@@ -1,7 +1,9 @@
+//app/chat/_components/chatInput.tsx
 'use client';
 
 import { useState } from 'react';
 import { ChatInputProps } from '../types'
+import { SaveChatButton } from './saveChatButton';
 
 export function ChatInput({ sendMessage, disabled }: ChatInputProps) {
   const [input, setInput] = useState('');
@@ -19,17 +21,18 @@ export function ChatInput({ sendMessage, disabled }: ChatInputProps) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="fixed bottom-0 w-full max-w-md p-2 mb-8 border rounded shadow-xl bg-white dark:bg-zinc-900"
-    >
-      <input
-        className="w-full p-2 outline-none"
-        value={input}
-        placeholder="Digite sua mensagem..."
-        onChange={(e) => setInput(e.currentTarget.value)}
-        disabled={disabled}
-      />
-    </form>
+    <div className="flex flex-col fixed bottom-0 w-full max-w-md mb-8 p-4 gap-2 border border-zinc-800 rounded-3xl shadow-xl bg-white dark:bg-zinc-900">
+      <form onSubmit={handleSubmit}>
+        <textarea 
+          className="w-full outline-none break-words resize-none"
+          value={input}
+          placeholder="Digite sua mensagem..."
+          onChange={(e) => setInput(e.currentTarget.value)}
+          disabled={disabled}
+        />
+      </form>
+
+      <SaveChatButton messages={[{ role: 'teste', content: 'Exemplo de mensagem' }]} />
+    </div>
   );
 }
