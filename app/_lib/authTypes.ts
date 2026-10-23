@@ -1,5 +1,7 @@
+import { ZodCUID2 } from "zod"
+
 type AuthUser = {
-    id: number,
+    id: string,
     name: string
 }
 

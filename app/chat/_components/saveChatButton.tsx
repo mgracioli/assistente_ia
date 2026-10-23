@@ -14,17 +14,17 @@ export function SaveChatButton({ messages }: SaveChatButtonProps) {
   return (
     <div className="flex flex-col items-left">
       <form action={formAction}>
-          <input type="hidden" name="title" value="Minha conversa" />
+          <input type="hidden" name="title" value="Meu chat" />
           <input type="hidden" name="messages" value={JSON.stringify(messages)} />
 
           <button 
             type="submit" 
             disabled={isPending} 
-            className="text-sm text-gray-300 bg-zinc-900 hover:bg-zinc-800 pl-3 pr-3 pt-2 pb-2 border border-zinc-700 rounded-3xl"
+            className="text-sm text-gray-300 bg-zinc-900 hover:bg-zinc-800 px-3 py-2 border border-zinc-700 rounded-full"
           >
-            {isPending ? 'Salvando...' : 'Salvar conversa'}
+            {isPending ? 'Salvando...' : 'Salvar chat'}
           </button>
-          
+
           {state.error && <p className="text-red-500">{state.error}</p>}
           {state.success && <p className="text-green-600">Conversa salva!</p>}    
       </form>

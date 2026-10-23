@@ -4,35 +4,49 @@
 import { useState } from 'react';
 import { ChatInputProps } from '../types'
 import { SaveChatButton } from './saveChatButton';
+import { SendMessageButton } from './sendMessageButton';
+import TextareaAutosize from 'react-textarea-autosize'
 
 export function ChatInput({ sendMessage, disabled }: ChatInputProps) {
   const [input, setInput] = useState('');
 
-  function handleSubmit(e: React.SubmitEvent) {
-    e.preventDefault();
-
+  function handleSend() {
     const inputText = input.trim();
+    if (!inputText || disabled) return;
 
-    if (!inputText) return;
+    sendMessage(inputText)
 
-    sendMessage(inputText);
-    
     setInput('');
   }
 
-  return (
-    <div className="flex flex-col fixed bottom-0 w-full max-w-md mb-8 p-4 gap-2 border border-zinc-800 rounded-3xl shadow-xl bg-white dark:bg-zinc-900">
-      <form onSubmit={handleSubmit}>
-        <textarea 
-          className="w-full outline-none break-words resize-none"
-          value={input}
-          placeholder="Digite sua mensagem..."
-          onChange={(e) => setInput(e.currentTarget.value)}
-          disabled={disabled}
-        />
-      </form>
+  function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+    // Enter sem Shift envia; Shift+Enter quebra linha
+    if (e.key === 'Enter' && !e.shiftKey && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  }
 
-      <SaveChatButton messages={[{ role: 'teste', content: 'Exemplo de mensagem' }]} />
-    </div>
+  function handleSubmit(e: React.SubmitEvent) {
+    e.preventDefault();
+    handleSend();
+  }
+
+  return (
+    <form 
+      onSubmit={handleSubmit}
+      //className="flex flex-col fixed bottom-0 w-full max-w-[50vw] mb-8 p-4 gap-5 box-border border border-zinc-800 focus-within:border-blue-900 rounded-[25px] bg-white dark:bg-zinc-900"
+    >
+      <TextareaAutosize
+        className="w-full outline-none resize-none transition-[height] duration-100"
+        minRows={1}
+        maxRows={6} 
+        value={input}
+        placeholder="Digite sua mensagem..."
+        onChange={(e) => setInput(e.currentTarget.value)}
+        onKeyDown={handleKeyDown}
+        disabled={disabled}
+      />
+    </form>
   );
 }

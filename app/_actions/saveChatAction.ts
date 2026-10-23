@@ -32,6 +32,9 @@ export async function saveChatAction(prevState: SaveChatState, formData: FormDat
   
   try {
     parsedMessages = JSON.parse(formData.get('messages') as string);
+
+          console.log('messages',parsedMessages)
+
   } catch {
     return { success: false, error: 'Formato de mensagens inválido.' };
   }

@@ -2,7 +2,7 @@ import {ChatMessageProps} from '../types'
 
 export function ChatMessage({messages}: ChatMessageProps) {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
             {messages.map((message) => (
                 <div key={message.id} className="whitespace-pre-wrap mb-4">
                     <span className="font-bold">
