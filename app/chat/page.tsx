@@ -1,25 +1,43 @@
-// app/page.tsx
+// app/chat/page.tsx
 'use client';
 
 import { useChat } from '@ai-sdk/react';
 import {ChatMessage} from './_components/chatMessage'
 import { ChatInput } from './_components/chatInput';
 import { SaveChatButton } from './_components/saveChatButton';
+import { SendMessageButton } from './_components/sendMessageButton';
 
 export default function ChatPage() {
-    const { messages, sendMessage, status } = useChat(); //Hook que faz o POST em api/chat/route.ts
+  const { messages, sendMessage, status } = useChat(); //Hook que faz o POST em api/chat/route.ts
+
+  // Converte UIMessage[] para o formato que a action espera
+  const serializableMessages = messages
+  .filter((m) => m.role === 'user' || m.role === 'assistant')
+  .map((m) => ({
+    role: m.role as 'user' | 'assistant',
+    content: m.parts
+    .filter((p) => p.type === 'text')
+    .map((p) => (p as { text: string }).text)
+    .join(''),
+  }));
 
   return (
-    <div className='flex flex-col w-full max-w-md py-24 mx-auto stretch'>
+    <div className='flex flex-col w-full max-w-[50vw] items-center py-24 mx-auto stretch'>
       <ChatMessage messages={messages} />
+  
+      <div className="flex flex-col fixed bottom-0 w-full max-w-[50vw] mb-8 p-4 gap-5 box-border border border-zinc-800 focus-within:border-blue-900 rounded-[25px] bg-white dark:bg-zinc-900">
+        <ChatInput 
+          sendMessage={(text) => sendMessage({ text })}
+          disabled={status === 'streaming'}    
+        >
+        </ChatInput>
 
-      <ChatInput 
-        sendMessage={(text) => sendMessage({ text })}
-        disabled={status === 'streaming'}
-      >
-      </ChatInput>
-
-      <SaveChatButton messages={} />
+        <div className='flex justify-between'>
+          <SaveChatButton messages={serializableMessages} />
+        
+          <SendMessageButton disabled={false}/>
+        </div>
+      </div>
     </div>
   );
 }

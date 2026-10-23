@@ -147,7 +147,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\miche\\OneDrive\\Área de Trabalho\\Meus documentos\\projetos\\JavascriptProjects\\assistente_ia\\app\\generated\\prisma",
+      "value": "C:\\Users\\Michel\\Desktop\\documentos\\pessoal\\projetos\\javascript\\assistente_ia\\app\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -161,7 +161,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\miche\\OneDrive\\Área de Trabalho\\Meus documentos\\projetos\\JavascriptProjects\\assistente_ia\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Michel\\Desktop\\documentos\\pessoal\\projetos\\javascript\\assistente_ia\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -175,12 +175,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://postgres:123456@localhost:5432/projeto_portifolio?schema=public"
       }
     }
   },

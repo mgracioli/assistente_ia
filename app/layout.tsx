@@ -3,6 +3,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Providers from "./providers";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,17 +24,21 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{/*{children}*/}
-        <header className="flex flex-col">
-          Meu sistema - layout global do sistema
-        </header>
+      <body className="min-h-full flex flex-col">
+        <Providers>
+          <header className="bg-blue-700 w-full p-4 text-center">
+            Meu sistema - layout global do sistema
+          </header>
 
-        <main className="flex flex-col">
-          {children}
-        </main>
+          <main className="flex flex-col flex-1">
+            <Suspense fallback={<div className="flex items-center justify-center flex-1">Carregando...</div>}>
+                {children}
+            </Suspense>
+          </main>
+        </Providers>
       </body>
     </html>
   );

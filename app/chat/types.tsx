@@ -1,4 +1,5 @@
 import { UIMessage } from "ai";
+import { EnumValues } from "zod/v3";
 
 export type ChatInputProps = {
   sendMessage: (text: string) => void;
@@ -14,4 +15,8 @@ export type SaveChatButtonProps = {
     role: string; 
     content: string 
   }[]
+}
+
+export type SendMessageButtonProps = {
+  disabled: boolean
 }
