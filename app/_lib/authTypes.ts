@@ -1,5 +1,4 @@
-import { ZodCUID2 } from "zod"
-
+// app/_lib/authTypes.ts
 type AuthUser = {
     id: string,
     name: string

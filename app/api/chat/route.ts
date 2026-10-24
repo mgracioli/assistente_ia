@@ -36,7 +36,6 @@ export async function POST(req: Request) {
         execute: async ({ dest, text }) => {
           // Simulação — em um projeto real eu chamaria uma API de envio de e-mail
           const msgm = text;
-
           const result = ['sucesso', 'erro'];
           const resp = result[Math.floor(Math.random() * result.length)];
           

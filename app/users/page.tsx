@@ -1,3 +1,4 @@
+// app/users/page.tsx
 import { UserList } from "./_components/userList";
 
 export default function userPage() {

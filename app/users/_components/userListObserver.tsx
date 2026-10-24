@@ -1,7 +1,7 @@
 // Esse componente não está sendo utilizado pois foi trocado pelo componente "userList", esse daqui foi feito para testar o uso do IntersectionObserver.
 // O "userList.tsx" usa um componente que substitui o observer e faz a mesma coisa, além de ser mais completo, então esse componente foi deixado apenas como referência de estudo.
 
-
+// app/users/_components/userListObserver.tsx
 // app/users/user-list.tsx
 // 'use client';
 

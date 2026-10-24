@@ -1,3 +1,4 @@
+// app/_lib/auth.ts
 import { AuthResponse } from "./authTypes";
 
 export async function Auth(): Promise<AuthResponse>  {
