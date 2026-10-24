@@ -6,6 +6,7 @@ import {ChatMessage} from './_components/chatMessage'
 import { ChatInput } from './_components/chatInput';
 import { SaveChatButton } from './_components/saveChatButton';
 import { SendMessageButton } from './_components/sendMessageButton';
+import { ChatInputProvider } from './_contexts/chatInputContext';
 
 export default function ChatPage() {
   const { messages, sendMessage, status } = useChat(); //Hook que faz o POST em api/chat/route.ts
@@ -26,17 +27,18 @@ export default function ChatPage() {
       <ChatMessage messages={messages} />
   
       <div className="flex flex-col fixed bottom-0 w-full max-w-[50vw] mb-8 p-4 gap-5 box-border border border-zinc-800 focus-within:border-blue-900 rounded-[25px] bg-white dark:bg-zinc-900">
-        <ChatInput 
-          sendMessage={(text) => sendMessage({ text })}
-          disabled={status === 'streaming'}    
+        <ChatInputProvider 
+          sendMessage={(text) => sendMessage({ text })} 
+          disabled={status === 'streaming'}
         >
-        </ChatInput>
+          <ChatInput /> 
 
-        <div className='flex justify-between'>
-          <SaveChatButton messages={serializableMessages} />
-        
-          <SendMessageButton disabled={false}/>
-        </div>
+          <div className='flex justify-between'>
+            <SaveChatButton messages={serializableMessages} />
+          
+            <SendMessageButton />
+          </div>
+        </ChatInputProvider>
       </div>
     </div>
   );

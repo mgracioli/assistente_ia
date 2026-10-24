@@ -1,3 +1,4 @@
+// app/chat/_components/chatMessage.tsx
 import {ChatMessageProps} from '../types'
 
 export function ChatMessage({messages}: ChatMessageProps) {

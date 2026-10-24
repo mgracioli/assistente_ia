@@ -1,5 +1,7 @@
 // pagina principal, envolve toda a aplicação, UI é compartilhada entre as rotas filhas, por exemplo, se eu tenho um cabeçalho padrão para
 // o site, ele deve ser colocado aqui, para que seja renderizado em todas as páginas filhas. O mesmo vale para o rodapé, barra lateral, etc.
+
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

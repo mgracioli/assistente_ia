@@ -1,3 +1,4 @@
+// app/_actions/saveChatActionTypes.ts
 export type SaveChatState = {
   success: boolean;
   error?: string;
