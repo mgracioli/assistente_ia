@@ -5,6 +5,10 @@ export type ChatMessageProps = {
     messages: UIMessage<unknown>[]
 }
 
+export type ChatInputProps = {
+  className: string
+}
+
 export type SaveChatButtonProps = {
   messages: { 
     role: string; 

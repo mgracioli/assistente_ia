@@ -3,8 +3,9 @@
 
 import TextareaAutosize from 'react-textarea-autosize'
 import { useChatInput } from '../_contexts/chatInputContext';
+import { ChatInputProps } from '../types';
 
-export function ChatInput() {
+export function ChatInput({className}: ChatInputProps) {
   const { input, setInput, handleSend, disabled } = useChatInput();
 
   // Envia a mensagem para a rota POST 
@@ -19,8 +20,8 @@ export function ChatInput() {
 
   return (      
     <TextareaAutosize
-      className="w-full outline-none resize-none transition-[height] duration-100"
-      minRows={1}
+      className={className}
+      minRows={2}
       maxRows={6} 
       value={input}
       placeholder="Digite sua mensagem..."
