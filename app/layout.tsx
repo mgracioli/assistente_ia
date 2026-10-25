@@ -10,6 +10,7 @@ import "./globals.css";
 import Providers from "./providers";
 import { Suspense } from "react";
 import { Sidebar } from '@/components/sidebar';
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,12 +38,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Providers>
           <div className="flex min-h-screen">
             <Sidebar />
-              <main className="flex-1 overflow-y-auto">
-                <Suspense fallback={<div className="flex items-center justify-center flex-1">Carregando...</div>}>
-                  {children}
-                </Suspense>
-              </main>
-            {/* </div> */}
+            <Toaster richColors position="top-right" />
+            <main className="flex-1 overflow-y-auto">
+              <Suspense fallback={<div className="flex items-center justify-center flex-1">Carregando...</div>}>     
+                {children}
+              </Suspense>
+            </main>
           </div>
         </Providers>
       </body>
