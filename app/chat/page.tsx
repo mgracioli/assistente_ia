@@ -50,7 +50,7 @@ export default function ChatPage() {
     <div className='flex flex-col max-w-[40vw] items-center py-24 mx-auto'>
       <ChatMessage messages={messages} />
   
-      <div className="flex flex-col fixed bottom-0 w-full max-w-[40vw] mb-8 p-4 gap-3 box-border border border-zinc-800 focus-within:border-blue-900 rounded-[25px] bg-white dark:bg-zinc-900">
+      <div className="flex flex-col fixed bottom-0 w-full max-w-[40vw] min-w-xs mb-8 p-4 gap-3 box-border border border-zinc-800 focus-within:border-blue-900 rounded-[25px] bg-white dark:bg-zinc-900">
         <ChatInputProvider 
           sendMessage={handleSend} 
           disabled={status === 'streaming'}          

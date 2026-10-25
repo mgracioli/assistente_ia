@@ -5,6 +5,7 @@ import { useActionState, useEffect } from 'react';
 import { CadastroUserAction } from '@/app/users/_actions/cadastroUserAction';
 import { CadastroUserState } from '@/app/users/_actions/cadastroUserActionTypes';
 import { toast } from 'sonner';
+import Link from 'next/link';
 
 const initialState: CadastroUserState = { success: false }; // na montagem do componente, o useEffect vai rodar mas, nesse caso, como ele inicia como "false", não vai disparar nenhum toast
 
@@ -18,7 +19,10 @@ export function UserCadastroForm() {
     }, [state]);
 
     return (
-        <form action={formAction} className="flex flex-col gap-4 max-w-md">
+        <form 
+            action={formAction} 
+            className="flex flex-col gap-5 w-full"
+        >
             <div>
                 <label 
                     htmlFor="name" 
