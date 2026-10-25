@@ -56,10 +56,7 @@ export async function CadastroUserAction(prevState: CadastroUserState, formData:
   } catch (err: any) {
     // P2002 = unique constraint violation (email duplicado)
     if (err?.code === 'P2002') {
-      return {
-        success: false,
-        fieldErrors: { email: ['Este e-mail já está cadastrado.'] },
-      };
+      return {success: false, error: 'Este e-mail já está cadastrado.' };
     }
 
     console.error('Erro ao criar usuário:', err);
