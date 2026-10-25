@@ -3,11 +3,12 @@
 
 import TextareaAutosize from 'react-textarea-autosize'
 import { useChatInput } from '../_contexts/chatInputContext';
-import { ChatInputProps } from '../types';
+import { LocalAttachment } from '../types';
+import { useRef, useState } from 'react';
 
-export function ChatInput({className}: ChatInputProps) {
-  const { input, setInput, handleSend, disabled } = useChatInput();
-
+export function ChatInput() {
+  const { input, setInput, handleSend, disabled } = useChatInput(); // hook do chatInputContext 
+  
   // Envia a mensagem para a rota POST 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     // Enter sem Shift envia; Shift+Enter quebra linha
@@ -18,9 +19,9 @@ export function ChatInput({className}: ChatInputProps) {
     }
   }
 
-  return (      
+  return (         
     <TextareaAutosize
-      className={className}
+      className="w-full outline-none resize-none transition-[height] duration-100"
       minRows={2}
       maxRows={6} 
       value={input}

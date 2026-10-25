@@ -1,13 +1,18 @@
 // app/chat/_contexts/chatInputContextTypes.ts
-type ChatInputContextValue = {
+import { LocalAttachment } from "../types";
+
+export type ChatInputContextValue = {
   input: string;
   setInput: (value: string) => void;
+  attachments: LocalAttachment[];
+  addAttachments: (files: File[]) => void;
+  removeAttachment: (id: string) => void;
   handleSend: () => void;
   disabled: boolean;
 };
 
-type ChatInputProviderProps = {
+export type ChatInputProviderProps = {
   children: React.ReactNode;
-  sendMessage: (text: string) => void;
+  sendMessage: (payload: { text: string; attachments: LocalAttachment[] }) => void | Promise<void>;
   disabled: boolean;
 };

@@ -5,11 +5,10 @@ export function ChatMessage({messages}: ChatMessageProps) {
     return (
         <div className="flex flex-col w-full">
             {messages.map((message) => (
-                <div key={message.id} className="whitespace-pre-wrap mb-4">
-                    <span className="font-bold">
-                        {message.role === 'user' ? 'Você: ' : 'IA: '}
-                    </span>
-
+                <span
+                    key={message.id} 
+                    className={`rounded-[25px] p-2.5 mb-2 ${message.role === 'user' ? 'bg-zinc-800 ml-auto'  : '' }`}
+                >
                     {message.parts.map((part, i) => {
                         switch(part.type)  {
                             case 'text':
@@ -31,7 +30,6 @@ export function ChatMessage({messages}: ChatMessageProps) {
                                         ⏳ Consultando clima...
                                     </div>
                                 );
-
                             case 'tool-sendMail':
                                 if (part.state === 'output-available') {
                                     const output = part.output as { dest: string; resp: string };
@@ -48,12 +46,11 @@ export function ChatMessage({messages}: ChatMessageProps) {
                                         ⏳ Enviando e-mail...
                                     </div>
                                 );  
-
                             default:
                                 return null;       
                         }
                     })}
-                </div>
+                </span>
             ))}
         </div>
     );

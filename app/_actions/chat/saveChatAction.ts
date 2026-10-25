@@ -1,10 +1,10 @@
-// app/_actions/saveChatAction.ts
+// app/_actions/chat/saveChatAction.ts
 'use server';
 
-import 'server-only';
+import 'server-only'; // garante que um módulo seja utilizado exclusivamente no lado do servidor. Se tentar importar esse módulo em um Client Component, o Next.js gera um erro durante a compilação
 import { z } from 'zod';
-import { Auth } from '../_lib/auth';
-import { db } from '../_lib/db';
+import { Auth } from '@/app/_lib/auth';
+import { db } from '@/app/_lib/db';
 import { revalidatePath } from 'next/cache';
 import { SaveChatState } from './saveChatActionTypes';
 
@@ -14,7 +14,7 @@ const messageSchema = z.object({
   content: z.string().min(1).max(10000),
 });
 
-// schema para validação do chat todo
+// schema para validação do chat
 const saveChatSchema = z.object({
   title: z.string().min(1).max(120).trim(),
   messages: z.array(messageSchema).min(1).max(100), // limite de mensagens por conversa
@@ -23,19 +23,21 @@ const saveChatSchema = z.object({
 export async function saveChatAction(prevState: SaveChatState, formData: FormData): Promise<SaveChatState> {
   // autenticação
   const session = await Auth();
-
   if (!session?.user?.id) {
     return { success: false, error: 'Sessão expirada. Faça login novamente.' };
   }
+
+  // Rate limiting (quando tiver Upstash configurado ou banco)
+  // const { success: withinLimit } = await ratelimit.limit(session.user.id);
+  // if (!withinLimit) {
+  //   return { success: false, error: 'Muitas requisições. Aguarde um minuto.' };
+  // }
 
   // parse do formdata (as mensagens vêm da input do form como JSON string)
   let parsedMessages: unknown;
   
   try {
     parsedMessages = JSON.parse(formData.get('messages') as string);
-
-          console.log('messages',parsedMessages)
-
   } catch {
     return { success: false, error: 'Formato de mensagens inválido.' };
   }
@@ -56,12 +58,6 @@ export async function saveChatAction(prevState: SaveChatState, formData: FormDat
 
     return { success: false, fieldErrors };
   }
-
-  // 4. Rate limiting (quando tiver Upstash configurado ou banco)
-  // const { success: withinLimit } = await ratelimit.limit(session.user.id);
-  // if (!withinLimit) {
-  //   return { success: false, error: 'Muitas requisições. Aguarde um minuto.' };
-  // }
 
   // persistência na tabela "chat" do banco
   try {
