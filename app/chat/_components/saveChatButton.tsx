@@ -2,8 +2,8 @@
 'use client';
 
 import { useActionState } from 'react';
-import { saveChatAction } from '@/app/_actions/saveChatAction';
-import { SaveChatState } from '@/app/_actions/saveChatActionTypes';
+import { saveChatAction } from '@/app/_actions/chat/saveChatAction';
+import { SaveChatState } from '@/app/_actions/chat/saveChatActionTypes';
 import { SaveChatButtonProps } from '../types';
 
 const initialState: SaveChatState = { success: false };

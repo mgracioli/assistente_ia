@@ -6,8 +6,23 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const links = [
-  { href: '/chat', label: 'Chat', icon: '💬' },
-  { href: '/users', label: 'Usuários', icon: '👥' },
+    { 
+        href: '/chat', 
+        label: 'Chat', 
+        icon: '💬' 
+    },
+    { 
+        href: '/users', 
+        label: 'Usuários', 
+        icon: '👥',
+        children: [
+            {   
+                href: '/users/cadastro', 
+                label: 'Novo usuário', 
+                icon: '➕' 
+            },
+        ] 
+    },
 ];
 
 export function Sidebar() {
@@ -49,25 +64,51 @@ export function Sidebar() {
 
         <nav className="flex flex-col gap-1">
             {links.map((link) => {
-            const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+                const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+                const showChildren = link.children && link.children.length > 0 && isActive;
 
-            return (
-                <Link
-                    key={link.href}
-                    href={link.href}
-                    title={!isOpen ? link.label : undefined}
-                    className={`
-                        flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors
-                        'justify-center'
-                        ${isActive
-                        ? 'bg-blue-600 text-white'
-                        : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800'}
-                    `}
-                >
-                    <span className="shrink-0">{link.icon}</span>
-                    {isOpen && <span className="truncate">{link.label}</span>}
-                </Link>
-            );
+                return (
+                    <div key={link.href}>
+                        <Link 
+                            href={link.href}
+                            title={!isOpen ? link.label : undefined}
+                            className={`
+                                flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors
+                                'justify-center'
+                                ${isActive
+                                ? 'bg-blue-600 text-white'
+                                : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800'}
+                            `}
+                        >
+                            <span className="shrink-0">{link.icon}</span>
+                            {isOpen && <span className="truncate">{link.label}</span>}
+                        </Link>
+
+                        {/* Sublinks: só aparecem quando abertos e na área do pai */}
+                        {isOpen && showChildren && (
+                            <div className="ml-6 mt-1 flex flex-col gap-1">
+                                {link.children.map((child) => {
+                                    const childActive = pathname === child.href;
+
+                                    return (
+                                        <Link
+                                            key={child.href}
+                                            href={child.href}
+                                            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs transition-colors ${
+                                            childActive
+                                                ? 'bg-blue-500 text-white'
+                                                : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800'
+                                            }`}
+                                        >
+                                            <span>{child.icon}</span>
+                                            <span>{child.label}</span>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                );
             })}
         </nav>
     </aside>
