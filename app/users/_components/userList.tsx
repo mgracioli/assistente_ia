@@ -1,4 +1,4 @@
-// app/users/user-list.tsx
+// app/users/userList.tsx
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
@@ -49,13 +49,13 @@ export function UserList() {
     const allUsers = data.pages.flatMap((page) => page.users);   // Agrupa todas as páginas/todos os usuários em um único array
     
     return (
-        <div>
+        <div className='flex flex-col gap-5'>
             <input
                 type="text"
                 placeholder="Buscar por nome..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="mb-4 p-2 w-full border rounded"
+                className="p-2 w-full border rounded"
             />
 
             <InfiniteScroll
